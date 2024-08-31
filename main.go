@@ -1,7 +1,7 @@
 package main
 
 import (
-	fn "asciiart/functions"
+	art "asciiart/functions"
 	"fmt"
 	"os"
 )
@@ -10,6 +10,9 @@ func main() {
 	args := os.Args
 	if len(args) != 2 {
 		fmt.Println("Incorrect number of arguments")
+		return
 	}
-	fn.MyPrint()
+
+	asciiArtMap := art.AssignArt("standard.txt")
+	art.AsciiPrint(args[1], asciiArtMap)
 }
