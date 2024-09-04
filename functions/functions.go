@@ -39,14 +39,39 @@ func AssignArt(banner string) map[rune][]string {
 	return asciiArtMap
 }
 
-// Printing the ASCII art for a character
+// Checking if the user input consists of only ASCII characters by checking if the key exists inside of the map
+func IsAsciiInput(word string, asciiArtMap map[rune][]string) bool {
+	for _, char := range word {
+		_, exists := asciiArtMap[char]
+		if exists {
+			continue
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
+// Printing the ASCII art for a word
 func AsciiPrint(word string, asciiArtMap map[rune][]string) {
+	if word == "" {
+		return
+	}
 	for i := 0; i <= 7; i++ {
 		for _, char := range word {
 			fmt.Print(asciiArtMap[char][i])
 		}
-		if i != 7 {
+		fmt.Println()
+	}
+}
+
+// Printing the ASCII art from an array of strings using AsciiPrint
+func AsciiPrintArr(inputArr []string, asciiArtMap map[rune][]string) {
+	for _, input := range inputArr {
+		if input == "" {
 			fmt.Println()
+		} else {
+			AsciiPrint(input, asciiArtMap)
 		}
 	}
 }
